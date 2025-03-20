@@ -20,16 +20,16 @@ function addForegroundServiceToManifest(androidManifest) {
   mainApplication.service.push({
     $: {
       'android:name': 'com.voximplant.foregroundservice.VIForegroundService',
-      'android:foregroundServiceType': "dataSync",
+      'android:foregroundServiceType': "dataSync|location",
       'android:exported': 'false'
     }
   });
 
-  androidManifest?.manifest['uses-permission'].push({
-    $: {
-      'android:name': 'android.permission.FOREGROUND_SERVICE_DATA_SYNC'
-    }
-  });
+  // androidManifest?.manifest['uses-permission'].push({
+  //   $: {
+  //     'android:name': 'android.permission.FOREGROUND_SERVICE_DATA_SYNC'
+  //   },
+  // });
 
   return androidManifest;
 }

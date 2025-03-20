@@ -13,17 +13,20 @@ export default {
     resizeMode: "contain",
     backgroundColor: "#ffffff",
   },
+  // expo: {
+  //   newArchEnabled: false
+  // },
   ios: {
     supportsTablet: true,
   },
   android: {
     permissions: [
-      "FOREGROUND_SERVICE",
-      "FOREGROUND_SERVICE_LOCATION",
       "android.permission.ACCESS_COARSE_LOCATION",
       "android.permission.ACCESS_FINE_LOCATION",
       "android.permission.FOREGROUND_SERVICE",
       "android.permission.FOREGROUND_SERVICE_LOCATION",
+      "android.permission.POST_NOTIFICATIONS",
+      "android.permission.FOREGROUND_SERVICE_DATA_SYNC"
     ],
     package: IS_PREVIEW ? "com.bodastage.thea.preview" : "com.bodastage.thea",
   },
@@ -34,6 +37,7 @@ export default {
   },
   plugins: [
     "expo-router",
+    "expo-background-task",
     [
       "expo-location",
       {
