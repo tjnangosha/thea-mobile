@@ -8,13 +8,10 @@ export default {
   icon: IS_PREVIEW ? "./assets/images/icon_thea_mobile_dev.png" : "./assets/images/icon_thea_mobile.png",
   scheme: "theamobile",
   userInterfaceStyle: "automatic",
-  splash: {
-    image: IS_PREVIEW ? "./assets/images/splash_thea_mobile_dev.png" : "./assets/images/splash_thea_mobile.png",
-    resizeMode: "contain",
-    backgroundColor: "#ffffff",
-  },
-  // expo: {
-  //   newArchEnabled: false
+  // splash: {
+  //   image: IS_PREVIEW ? "./assets/images/splash_thea_mobile_dev.png" : "./assets/images/splash_thea_mobile.png",
+  //   resizeMode: "contain",
+  //   backgroundColor: "#ffffff",
   // },
   ios: {
     supportsTablet: true,
@@ -36,8 +33,20 @@ export default {
     favicon: "./assets/images/favicon.png",
   },
   plugins: [
+    [
+      "expo-splash-screen",
+      {
+        // "autoHide": true,
+        splash: {
+          image: IS_PREVIEW ? "./assets/images/splash_thea_mobile_dev.png" : "./assets/images/splash_thea_mobile.png",
+          imageWidth: 200,
+          resizeMode: "contain",
+          backgroundColor: "#ffffff"
+        }
+      }
+    ],
     "expo-router",
-    "expo-background-task",
+    // "expo-background-task",
     [
       "expo-location",
       {

@@ -5,8 +5,8 @@ import * as SplashScreen from 'expo-splash-screen';
 import 'react-native-reanimated';
 import Toast from 'react-native-toast-message';
 import { StrictMode, useEffect, useRef, useState } from 'react';
-import * as BackgroundTask from 'expo-background-task';
-import * as TaskManager from 'expo-task-manager';
+// import * as BackgroundTask from 'expo-background-task';
+// import * as TaskManager from 'expo-task-manager';
 
 import { RealmService } from '@/store';
 import { useColorScheme } from '@/hooks/useColorScheme';
@@ -37,7 +37,7 @@ const startSync = async () => {
         console.error("Error saving locations online - will retry job at next interval");
       })
     } else {
-      await unregisterBackgroundTaskAsync()
+      // await unregisterBackgroundTaskAsync()
     }
 }
 
@@ -51,27 +51,27 @@ const startCleanup = () => {
 const BACKGROUND_TASK_IDENTIFIER = 'locations-sync';
 const SYNC_INTERVAL =  15 * 60 * 1000  // 5 minute(s)
 
-TaskManager.defineTask(BACKGROUND_TASK_IDENTIFIER, async () => {
-  try {
-    startSync()
-    startCleanup()
-  } catch (error) {
-    console.error('Failed to execute the background task:', error);
-    return BackgroundTask.BackgroundTaskResult.Failed;
-  }
+// TaskManager.defineTask(BACKGROUND_TASK_IDENTIFIER, async () => {
+//   try {
+//     startSync()
+//     startCleanup()
+//   } catch (error) {
+//     console.error('Failed to execute the background task:', error);
+//     return BackgroundTask.BackgroundTaskResult.Failed;
+//   }
 
-  return BackgroundTask.BackgroundTaskResult.Success;
-});
+//   return BackgroundTask.BackgroundTaskResult.Success;
+// });
 
-async function registerBackgroundTaskAsync() {
-  return BackgroundTask.registerTaskAsync(BACKGROUND_TASK_IDENTIFIER, {
-    minimumInterval: SYNC_INTERVAL,
-  });
-}
+// async function registerBackgroundTaskAsync() {
+//   return BackgroundTask.registerTaskAsync(BACKGROUND_TASK_IDENTIFIER, {
+//     minimumInterval: SYNC_INTERVAL,
+//   });
+// }
 
-async function unregisterBackgroundTaskAsync() {
-  return BackgroundTask.unregisterTaskAsync(BACKGROUND_TASK_IDENTIFIER);
-}
+// async function unregisterBackgroundTaskAsync() {
+//   return BackgroundTask.unregisterTaskAsync(BACKGROUND_TASK_IDENTIFIER);
+// }
 
 
 export default function RootLayout() {
@@ -93,7 +93,7 @@ export default function RootLayout() {
     realmInitDone.current = true;
     setForceRenderOnRealmInit(!forceRenderOnRealmInit);
 
-    (async () => { await registerBackgroundTaskAsync(); })();
+    // (async () => { await registerBackgroundTaskAsync(); })();
   }, []);
 
   return (
